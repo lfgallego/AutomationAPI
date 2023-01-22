@@ -1,5 +1,6 @@
 package co.com.Test.stepdefinitions;
 
+import co.com.Test.tasks.ConsultarUsuario;
 import co.com.Test.tasks.CrearUsuario;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -42,6 +43,24 @@ public class UserStepdefinition {
         Ensure.that(lastResponse().statusCode()).isEqualTo(201);
         String user = lastResponse().jsonPath().getString("name");
         System.out.println(user);
+    }
+    @Given("since you need to search for a user")
+    public void sinceYouNeedToSearchForAUser() {
+        String vpcEndpoint = EnvironmentSpecificConfiguration.from(environmentVariables)
+                .getProperty("url");
+        theActorCalled("actor").whoCan(
+                CallAnApi.at(vpcEndpoint));
+    }
+    @When("User information is sent for the query")
+    public void userInformationIsSentForTheQuery() {
+theActorInTheSpotlight().attemptsTo(ConsultarUsuario.consultarUsuario());
+        System.out.println(lastResponse().prettyPrint());
+    }
+    @Then("User query is successful")
+    public void userQueryIsSuccessful() {
+        Ensure.that(lastResponse().statusCode()).isEqualTo(200);
+        String total = lastResponse().jsonPath().getString("total");
+        System.out.println(total);
     }
 
 }
