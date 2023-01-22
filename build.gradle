@@ -1,5 +1,23 @@
+buildscript {
+    repositories {
+        mavenCentral()
+
+    }
+    dependencies {
+        classpath "net.serenity-bdd:serenity-gradle-plugin:3.2.5"
+
+    }
+}
+
+
 plugins {
     id 'java'
+    id 'idea'
+    id "net.serenity-bdd.serenity-gradle-plugin" version "3.2.5"
+}
+
+test {
+    useJUnitPlatform()
 }
 
 group 'org.example'
@@ -9,11 +27,19 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-}
 
-test {
-    useJUnitPlatform()
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation 'org.slf4j:slf4j-simple:1.7.36'
+    implementation group: 'net.serenity-bdd', name: 'serenity-screenplay-rest', version: '3.2.5'
+    implementation group: 'net.serenity-bdd', name: 'serenity-rest-assured', version: '3.2.5'
+    implementation group: 'net.serenity-bdd', name: 'serenity-core', version: '3.2.5'
+    implementation group: 'net.serenity-bdd', name: 'serenity-junit', version: '3.2.5'
+    implementation group: 'net.serenity-bdd', name: 'serenity-screenplay', version: '3.2.5'
+    implementation group: 'net.serenity-bdd', name: 'serenity-cucumber', version: '3.2.5'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.17.2'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.17.2'
+    implementation group: 'net.serenity-bdd', name: 'serenity-ensure', version: '3.2.5'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.3'
 }
