@@ -15,3 +15,10 @@ Feature: The CRUD process is required for APIS
     Given since you need to update  a user
     When User information is sent for the update
     Then User update is successful
+
+  @delete
+  Scenario: delete user
+
+    Given since you need to delete  a user
+    When User information is sent for the delte
+    Then User delete is successful
